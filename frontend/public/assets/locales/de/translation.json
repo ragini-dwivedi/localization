@@ -2,5 +2,13 @@
   "app_title": "Titel",
   "language": "Sprache",
   "welcome_message": "Herzlich willkommen\n",
-  "days_since_release": "Es ist {{number_of_days}} Tage her, seit dieses Video veröffentlicht wurde"
+  "days_since_release": "Es ist {{number_of_days}} Tage her, seit dieses Video veröffentlicht wurde",
+  "rank_title": "Rang",
+  "score_title": "Ergebnis",
+  "weekly_label": "Wöchentlich",
+  "overall_label": "Insgesamt",
+  "leadership_title": "Führungs-Dashboard",
+  "email_title": "Email",
+  "image_title": "Bild",
+  "name_title": "Name"
 }

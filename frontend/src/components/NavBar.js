@@ -63,11 +63,11 @@ export default function BootstrapNavbar() {
                         <div className="language-select">
                             <div className="d-flex align-items-center language-select-root">
                                 <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-                                    <Navbar.Brand href="#home">Fitbit Gamification</Navbar.Brand>
+                                    <Navbar.Brand href="/profile">Fitness Gamification</Navbar.Brand>
                                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                     <Navbar.Collapse id="basic-navbar-nav">
                                         <Nav className="mr-auto">
-                                            <Nav.Link href="/">Home</Nav.Link>
+                                            <Nav.Link href="/profile">Home</Nav.Link>
                                             <Nav.Link href="/about-us">Contact Us</Nav.Link>
                                             <Nav.Link href="/contact-us">About Us</Nav.Link>
                                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">

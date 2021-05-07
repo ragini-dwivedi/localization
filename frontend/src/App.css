@@ -10,3 +10,21 @@
 .mainContainer {
     margin: 3%;
 }
+
+.segment {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    min-height: 200px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 20%!important;
+}
+
+input[type=text] {
+    width: 100%!important;
+}
