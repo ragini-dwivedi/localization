@@ -1,0 +1,48 @@
+{
+  "name": "react-local",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@popperjs/core": "^2.9.0",
+    "bootstrap": "^5.0.0",
+    "classnames": "^2.2.6",
+    "flag-icon-css": "^3.5.0",
+    "i18next": "^19.9.0",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.1.1",
+    "js-cookie": "^2.2.1",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^11.8.8",
+    "react-redux": "^7.2.4",
+    "react-scripts": "4.0.3",
+    "rsuite": "^4.9.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "react-router-dom": "^5.2.0"
+  }
+}

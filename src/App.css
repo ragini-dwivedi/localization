@@ -1,0 +1,12 @@
+.navbar-brand {
+    margin-right: 5rem!important;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 2em!important;
+    padding-left: 2em!important;
+}
+
+.mainContainer {
+    margin: 3%;
+}
