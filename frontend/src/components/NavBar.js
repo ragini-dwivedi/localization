@@ -40,10 +40,24 @@ const GlobeIcon = ({ width = 24, height = 24 }) => (
     </svg>
 )
 
+const UserIcon = ({ width = 24, height = 24 }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={width}
+        height={height}
+        fill="currentColor"
+        className="bi bi-person-circle"
+        viewBox="0 0 16 16"
+    >
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </svg>
+)
+
 export default function BootstrapNavbar() {
     const currentLanguageCode = cookies.get('i18next') || 'en'
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
-    const {t} = useTranslation()
+    const {t} = useTranslation();
 
     useEffect(() => {
         console.log('Setting page stuff')
@@ -59,7 +73,7 @@ export default function BootstrapNavbar() {
                 maxWidth: "1900px"
             }}>
                 <div className="row" >
-                    <div className="col-md-10">
+                    <div className="col-md-9">
                         <div className="language-select">
                             <div className="d-flex align-items-center language-select-root">
                                 <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
@@ -68,6 +82,9 @@ export default function BootstrapNavbar() {
                                     <Navbar.Collapse id="basic-navbar-nav">
                                         <Nav className="mr-auto">
                                             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                                            <Nav.Link href="/profile">Profile</Nav.Link>
+                                            <Nav.Link href="/badges">Badges</Nav.Link>
+                                            <Nav.Link href="/community">Community</Nav.Link>
                                             {localStorage.getItem('email')?
                                             <NavDropdown title={`Hi ${localStorage.getItem('fullName')}`} id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/badges">Badges</NavDropdown.Item>
@@ -84,7 +101,7 @@ export default function BootstrapNavbar() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-1">
                         <div className="dropdown" style={{
                             padding: "10px"
                         }}>
@@ -122,6 +139,31 @@ export default function BootstrapNavbar() {
                                         </a>
                                     </li>
                                 ))}
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="col-md-2">
+                        <div className="dropdown" style={{
+                            padding: "10px"
+                        }}>
+                            <span style={{
+                                color: "#fff"
+                            }}>{`Hi ${localStorage.getItem('fullName')}`}</span>
+                            <button
+                                className="btn btn-link dropdown-toggle"
+                                type="button"
+                                id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <UserIcon />
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li>
+                                    <a href="/" className="dropdown-item">
+                                        Logout
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

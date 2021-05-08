@@ -11,7 +11,14 @@ import Box from '@material-ui/core/Box';
 import {Button, Form} from "react-bootstrap";
 import axios from "axios";
 import backendConfig from "../../backendConfig";
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import { TableCell } from '@material-ui/core';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -47,6 +54,7 @@ function a11yProps(index) {
 }
 
 class Profile extends Component{
+
     constructor(props) {
         super(props);
         this.state = {
@@ -55,7 +63,8 @@ class Profile extends Component{
             password : "",
             fullName: "",
             phone: "",
-            activityList: []
+            activityList: [],
+            userGroups: []
         }
     }
 
@@ -77,6 +86,16 @@ class Profile extends Component{
             .then((response) => {
                 if (response.data){
                     this.setState({activityList : response.data });
+                }
+            })
+            .catch(err => {
+                alert(err.response.data);
+            });
+
+        axios.get(`${backendConfig}/users/getGroups/${localStorage.getItem("email")}`)
+            .then((response) => {
+                if (response.data){
+                    this.setState({userGroups : response.data });
                 }
             })
             .catch(err => {
@@ -117,7 +136,7 @@ class Profile extends Component{
     }
 
     handleChange = (event) => {
-        if (event.currentTarget.innerText.includes('BADGES AND TROPHIES')){
+        if (event.currentTarget.innerText.includes('ACTIVITIES')){
             this.setState({ tabValue : 1 });
         } else if (event.currentTarget.innerText.includes('GROUPS')){
             this.setState({ tabValue : 2 });
@@ -129,7 +148,7 @@ class Profile extends Component{
     };
 
     handleChangeIndex = (event) => {
-        if (event.currentTarget.innerText.includes('BADGES AND TROPHIES')){
+        if (event.currentTarget.innerText.includes('ACTIVITIES')){
             this.setState({ tabValue : 1 });
         } else if (event.currentTarget.innerText.includes('GROUPS')){
             this.setState({ tabValue : 2 });
@@ -141,7 +160,6 @@ class Profile extends Component{
     };
 
     render() {
-
         return (
             <div>
                 <NavBar />
@@ -161,7 +179,7 @@ class Profile extends Component{
                                         aria-label="full width tabs example"
                                     >
                                         <Tab label="Personal" {...a11yProps(0)} />
-                                        <Tab label="Badges and Trophies" {...a11yProps(1)} />
+                                        <Tab label="Activities" {...a11yProps(1)} />
                                         <Tab label="Groups" {...a11yProps(2)} />
                                         <Tab label="Guided Programs" {...a11yProps(3)} />
                                     </Tabs>
@@ -227,12 +245,40 @@ class Profile extends Component{
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={this.state.tabValue} index={1} >
-                                        <div className="container segment">
+                                        <div className="container segment" style={{
+                                            paddingLeft: "10%",
+                                            paddingTop: "3%"
+                                        }}>
                                             <br />
                                             <div className="row" >
-                                                <div className="col-md-12">
-                                                    Item Two
-                                                </div>
+                                                {this.state.activityList.map((row) => (
+                                                    <div className="col-md-3">
+                                                        <table width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <img src={row.activityId} alt="image" style={{
+                                                                            height: "100px",
+                                                                            width: "100px"
+                                                                        }}/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Activity: {row.activityName}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        Points: {row.activityScore}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <br />
+                                                        <br />
+                                                    </div>
+                                                ))}
                                             </div>
                                         </div>
                                     </TabPanel>
@@ -241,9 +287,36 @@ class Profile extends Component{
                                             <br />
                                             <div className="row" >
                                                 <div className="col-md-12">
-                                                    Item Three
+                                                    <div className="row">
+                                                        <TableContainer component={Paper}>
+                                                            <Table aria-label="customized table">
+                                                                <TableHead>
+                                                                    <TableRow>
+                                                                        <TableCell><label>Group Image</label></TableCell>
+                                                                        <TableCell><label>Group Name</label></TableCell>
+                                                                        <TableCell><label>Group Description</label></TableCell>
+                                                                    </TableRow>
+                                                                </TableHead>
+                                                                <TableBody className="customTable">
+                                                                    {this.state.userGroups.map((row) => (
+                                                                        <TableRow>
+                                                                            <TableCell component="th" scope="row">
+                                                                                <img src={row.groupImage} alt="image" style={{
+                                                                                    height: "100px",
+                                                                                    width: "100px"
+                                                                                }}/>
+                                                                            </TableCell>
+                                                                            <TableCell>{row.groupName}</TableCell>
+                                                                            <TableCell>{row.groupDescription}</TableCell>
+                                                                        </TableRow>
+                                                                    ))}
+                                                                </TableBody>
+                                                            </Table>
+                                                        </TableContainer>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <br />
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={this.state.tabValue} index={3} >
