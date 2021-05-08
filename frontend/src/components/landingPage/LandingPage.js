@@ -162,6 +162,8 @@ class LandingPage extends Component {
             axios.post(`${backendConfig}/users/login`, data)
                 .then((response) => {
                     localStorage.setItem("email", this.state.email);
+                    localStorage.setItem("fullName", response.data.fullName);
+                    localStorage.setItem("phone", response.data.phone);
                     window.location.href = "/profile";
                 })
                 .catch(err => {
@@ -184,6 +186,8 @@ class LandingPage extends Component {
                 .then((response) => {
                     alert("User created successfully");
                     localStorage.setItem("email", this.state.email);
+                    localStorage.setItem("fullName", response.data.fullName);
+                    localStorage.setItem("phone", response.data.phone);
                     window.location.href = "/profile";
                 })
                 .catch(err => {
