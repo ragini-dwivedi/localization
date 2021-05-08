@@ -1,5 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb+srv://cmpe280:cmpe280@cmpe280.hbb1z.mongodb.net/gamification?retryWrites=true&w=majority';
+const url = 'mongodb+srv://cmpe280:cmpe280@cmpe280v2.hbb1z.mongodb.net/gamification?retryWrites=true&w=majority';
 let cursor;
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
