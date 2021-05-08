@@ -1,0 +1,15 @@
+.communties_list, .community {
+  border: black solid 1px;
+}
+
+.community_content {
+
+}
+
+h2 {
+  text-align: center;
+}
+
+button {
+  text-align: center;
+}

@@ -90,7 +90,7 @@ export default function Badges() {
                   data_all.map((item) => {
                     return (
                       <div className='item'>
-                        <img src={item.image}></img>
+                        <img src={item.image} height='150px' width='150px'></img>
                         <h5>Name: {item.name}</h5>
                         <h5>Badges: {item.badges}</h5>
                       </div>
@@ -104,7 +104,7 @@ export default function Badges() {
                   data_personal.map((item) => {
                     return (
                       <div className='item'>
-                        <img src={item.image}></img>
+                        <img src={item.image} height='150px' width='150px'></img>
                         <h5>Name: {item.name}</h5>
                         <h5>Badges: {item.badges}</h5>
                       </div>

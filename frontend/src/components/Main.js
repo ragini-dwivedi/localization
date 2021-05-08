@@ -3,6 +3,7 @@ import { Switch, Route }  from 'react-router-dom';
 import UserDashboard from './home/UserDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
+import Community from './community/Community';
 import Badges from './home/Badges';
 
 //Create a Main Component
@@ -20,6 +21,9 @@ const Main = () => {
                 </Route>
                 <Route path="/profile">
                     <UserProfile/>
+                </Route>
+                <Route path="/community">
+                    <Community/>
                 </Route>
                 <Route path="/">
                     <LandingPage/>

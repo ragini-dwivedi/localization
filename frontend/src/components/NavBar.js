@@ -71,7 +71,7 @@ export default function BootstrapNavbar() {
                                             {localStorage.getItem('email')?
                                             <NavDropdown title={`Hi ${localStorage.getItem('fullName')}`} id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/badges">Badges</NavDropdown.Item>
-                                                <NavDropdown.Item href="#action/3.2">Community</NavDropdown.Item>
+                                                <NavDropdown.Item href="/community">Community</NavDropdown.Item>
                                                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                                                 <NavDropdown.Divider />
                                                 <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
