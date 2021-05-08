@@ -23,13 +23,11 @@
   margin: 1rem;
   border: black solid 1px;
   border-radius: 5px;
+  width: 175px;
+  height: 250px;
 }
 
 .parent {
   background-color: aqua;
   height: 100vh;
-}
-
-h2 {
-  display: block;
 }
