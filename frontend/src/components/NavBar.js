@@ -54,6 +54,13 @@ const UserIcon = ({ width = 24, height = 24 }) => (
     </svg>
 )
 
+const handleLogout = () => {
+    localStorage.removeItem('fullName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('phone');
+    window.location.href = "/";
+}
+
 export default function BootstrapNavbar() {
     const currentLanguageCode = cookies.get('i18next') || 'en'
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
@@ -85,16 +92,6 @@ export default function BootstrapNavbar() {
                                             <Nav.Link href="/profile">Profile</Nav.Link>
                                             <Nav.Link href="/badges">Badges</Nav.Link>
                                             <Nav.Link href="/community">Community</Nav.Link>
-                                            {localStorage.getItem('email')?
-                                            <NavDropdown title={`Hi ${localStorage.getItem('fullName')}`} id="basic-nav-dropdown">
-                                                <NavDropdown.Item href="/badges">Badges</NavDropdown.Item>
-                                                <NavDropdown.Item href="/community">Community</NavDropdown.Item>
-                                                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                                                <NavDropdown.Divider />
-                                                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-                                            </NavDropdown>
-                                            :<Nav.Link href="/">Login</Nav.Link>}
-                                            
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Navbar>
@@ -160,7 +157,7 @@ export default function BootstrapNavbar() {
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                                 <li>
-                                    <a href="/" className="dropdown-item">
+                                    <a className="dropdown-item" onClick={handleLogout}>
                                         Logout
                                     </a>
                                 </li>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Switch, Route }  from 'react-router-dom';
+import { Switch, Route, Redirect }  from 'react-router-dom';
 import UserDashboard from './home/UserDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
@@ -13,17 +13,37 @@ const Main = () => {
         <div>
             <Switch>
                 {/*Render Different Component based on Route*/}
-                <Route path="/dashboard">
-                    <UserDashboard/>
+                <Route path="/dashboard" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <UserDashboard/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                    }} >
                 </Route>
-                <Route path="/badges">
-                    <Badges />
+                <Route path="/badges" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <Badges/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                    }} >
                 </Route>
-                <Route path="/profile">
-                    <UserProfile/>
+                <Route path="/profile" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <UserProfile />;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                    }} >
                 </Route>
-                <Route path="/community">
-                    <Community/>
+                <Route path="/community" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <Community/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                    }} >
                 </Route>
                 <Route path="/">
                     <LandingPage/>
