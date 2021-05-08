@@ -1,14 +1,25 @@
-.badges {
+.badges-1 {
   border: black solid 1px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
   background-color: aliceblue;
+  width: 50vw;
+}
+
+.badges-2 {
+  border: black solid 1px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+  background-color: aliceblue;
+  width: 50vw;
 }
 
 .item {
-  padding: 2rem;
+  padding: 1rem;
   margin: 1rem;
   border: black solid 1px;
   border-radius: 5px;
@@ -17,4 +28,8 @@
 .parent {
   background-color: aqua;
   height: 100vh;
+}
+
+h2 {
+  display: block;
 }
