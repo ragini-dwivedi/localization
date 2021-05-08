@@ -3,16 +3,12 @@ import NavBar from "../NavBar";
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import DialogContentText from "@material-ui/core/DialogContentText";
 import {Button, Form} from "react-bootstrap";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 import axios from "axios";
 import backendConfig from "../../backendConfig";
 
@@ -59,6 +55,7 @@ class Profile extends Component{
             password : "",
             fullName: "",
             phone: "",
+            activityList: []
         }
     }
 
@@ -70,6 +67,16 @@ class Profile extends Component{
                     this.setState({password : response.data.password });
                     this.setState({phone : response.data.phone });
                     this.setState({fullName : response.data.fullName });
+                }
+            })
+            .catch(err => {
+                alert(err.response.data);
+            });
+
+        axios.get(`${backendConfig}/users/getActivities/${localStorage.getItem("email")}`)
+            .then((response) => {
+                if (response.data){
+                    this.setState({activityList : response.data });
                 }
             })
             .catch(err => {
@@ -220,13 +227,34 @@ class Profile extends Component{
                                         </div>
                                     </TabPanel>
                                     <TabPanel value={this.state.tabValue} index={1} >
-                                        Item Two
+                                        <div className="container segment">
+                                            <br />
+                                            <div className="row" >
+                                                <div className="col-md-12">
+                                                    Item Two
+                                                </div>
+                                            </div>
+                                        </div>
                                     </TabPanel>
                                     <TabPanel value={this.state.tabValue} index={2} >
-                                        Item Three
+                                        <div className="container segment">
+                                            <br />
+                                            <div className="row" >
+                                                <div className="col-md-12">
+                                                    Item Three
+                                                </div>
+                                            </div>
+                                        </div>
                                     </TabPanel>
                                     <TabPanel value={this.state.tabValue} index={3} >
-                                        Item FOUR
+                                        <div className="container segment">
+                                            <br />
+                                            <div className="row" >
+                                                <div className="col-md-12">
+                                                    Item FOUR
+                                                </div>
+                                            </div>
+                                        </div>
                                     </TabPanel>
                                 </SwipeableViews>
                             </div>

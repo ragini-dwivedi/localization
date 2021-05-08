@@ -120,4 +120,28 @@ router.delete('/deleteuser', function(req, res, next) {
   });
 });
 
+router.get('/getActivities/:email', async function(req, res, next) {
+  let email = req.params.email;
+  let start = new Date();
+  start.setHours(0,0,0,0);
+
+  let end = new Date();
+  end.setHours(23,59,59,999);
+  try {
+    let data = [];
+    let result = await client.db('gamification').collection('activities').find({email: email, createdDateTime: { $gte: start, $lte: end}});
+    while(result.hasNext()) {
+      data.push(result.next())
+    }
+
+    res.status(200).send(data);
+  } catch (e) {
+    if (e.message.includes('User with email doesnt exist') || e.message.includes('Wrong password')) {
+      res.status(500).send(e.message);
+    }else {
+      res.status(500).send(e);
+    }
+  }
+});
+
 module.exports = router;
