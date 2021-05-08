@@ -82,6 +82,8 @@ class LandingPage extends Component {
             email : "",
             username : "",
             password : "",
+            fullName: "",
+            phone: "",
             role : ""
         }
         this.handleClickOpenL = this.handleClickOpenL.bind(this);
@@ -164,7 +166,7 @@ class LandingPage extends Component {
                     localStorage.setItem("email", this.state.email);
                     localStorage.setItem("fullName", response.data.fullName);
                     localStorage.setItem("phone", response.data.phone);
-                    window.location.href = "/profile";
+                    window.location.href = "/dashboard";
                 })
                 .catch(err => {
                     alert(err.response.data);
@@ -188,7 +190,7 @@ class LandingPage extends Component {
                     localStorage.setItem("email", this.state.email);
                     localStorage.setItem("fullName", response.data.fullName);
                     localStorage.setItem("phone", response.data.phone);
-                    window.location.href = "/profile";
+                    window.location.href = "/dashboard";
                 })
                 .catch(err => {
                     alert(err.response.data);
@@ -227,7 +229,7 @@ class LandingPage extends Component {
                 <br/>
                 <div className={classes.image}>
                     <img src={image} alt="image" style={{
-                        height: "800px",
+                        height: "600px",
                         width: "1200px"
                     }}/>
                     <br/><br/>

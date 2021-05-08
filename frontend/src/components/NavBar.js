@@ -63,18 +63,16 @@ export default function BootstrapNavbar() {
                         <div className="language-select">
                             <div className="d-flex align-items-center language-select-root">
                                 <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-                                    <Navbar.Brand href="/profile">Fitness Gamification</Navbar.Brand>
+                                    <Navbar.Brand href="/dashboard">Fitness Gamification</Navbar.Brand>
                                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                     <Navbar.Collapse id="basic-navbar-nav">
                                         <Nav className="mr-auto">
-                                            {/* <Nav.Link href="/profile">Home</Nav.Link>
-                                            <Nav.Link href="/about-us"></Nav.Link>
-                                            <Nav.Link href="/contact-us">About Us</Nav.Link> */}
+                                            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                                             {localStorage.getItem('email')?
                                             <NavDropdown title={`Hi ${localStorage.getItem('fullName')}`} id="basic-nav-dropdown">
                                                 <NavDropdown.Item href="/badges">Badges</NavDropdown.Item>
                                                 <NavDropdown.Item href="#action/3.2">Community</NavDropdown.Item>
-                                                <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
+                                                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                                                 <NavDropdown.Divider />
                                                 <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
                                             </NavDropdown>
