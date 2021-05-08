@@ -82,6 +82,8 @@ class LandingPage extends Component {
             email : "",
             username : "",
             password : "",
+            fullName: "",
+            phone: "",
             role : ""
         }
         this.handleClickOpenL = this.handleClickOpenL.bind(this);
@@ -162,7 +164,7 @@ class LandingPage extends Component {
             axios.post(`${backendConfig}/users/login`, data)
                 .then((response) => {
                     localStorage.setItem("email", this.state.email);
-                    window.location.href = "/profile";
+                    window.location.href = "/dashboard";
                 })
                 .catch(err => {
                     alert(err.response.data);
@@ -184,7 +186,7 @@ class LandingPage extends Component {
                 .then((response) => {
                     alert("User created successfully");
                     localStorage.setItem("email", this.state.email);
-                    window.location.href = "/profile";
+                    window.location.href = "/dashboard";
                 })
                 .catch(err => {
                     alert(err.response.data);
@@ -223,7 +225,7 @@ class LandingPage extends Component {
                 <br/>
                 <div className={classes.image}>
                     <img src={image} alt="image" style={{
-                        height: "800px",
+                        height: "600px",
                         width: "1200px"
                     }}/>
                     <br/><br/>

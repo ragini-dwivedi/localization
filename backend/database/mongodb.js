@@ -81,7 +81,7 @@ function insertMultipleData(query, collection, callback){
 function updateOneData(filter, query, collection, callback){
     if (client){
         data = client.db("gamification").collection(collection);
-        if (data != undefined){
+        if (data !== undefined){
             cursor = data.updateOne(
                 filter,
                 {

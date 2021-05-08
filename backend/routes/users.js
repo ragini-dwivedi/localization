@@ -61,12 +61,31 @@ router.post('/login', async function(req, res, next) {
   }
 });
 
+router.get('/getuser/:email', async function(req, res, next) {
+  let email = req.params.email;
+  try {
+    let result = await client.db('gamification').collection('user').findOne({email: email});
+    console.log(result);
+    res.status(200).send(result);
+  } catch (e) {
+    if (e.message.includes('User with email doesnt exist') || e.message.includes('Wrong password')) {
+      res.status(500).send(e.message);
+    }else {
+      res.status(500).send(e);
+    }
+  }
+});
+
 /* POST update user for fitness gamification */
 router.post('/updateuser', function(req, res, next) {
+  let fullName = req.body.fullName;
+  let username = req.body.username;
   let email = req.body.email;
+  let phone = req.body.phone;
   let password = req.body.password;
+
   let data1 = { email: email };
-  let data2 = { email: email, password: password };
+  let data2 = { fullName: fullName, username: username, phone: phone, password: password, creationTime: new Date()};
   database.updateOneData(data1, data2, 'user', function (err, details) {
     if (err){
       res.send({

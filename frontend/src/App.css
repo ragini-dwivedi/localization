@@ -21,10 +21,14 @@ label {
     font-weight: bold;
 }
 
-.form-control {
+.form-control-sm {
     width: 20%!important;
 }
 
-input[type=text] {
+input[placeholder=Search] {
+    width: 100%!important;
+}
+
+.makeStyles-root-1 {
     width: 100%!important;
 }
