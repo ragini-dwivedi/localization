@@ -6,6 +6,8 @@ var logger = require('morgan');
 var cors = require('cors');
 
 let usersRouter = require('./routes/users');
+let eventRouter = require('./routes/events');
+let activityRouter = require('./routes/activity');
 
 let app = express()
 
@@ -24,6 +26,8 @@ app.use(cors({
 
 // base routes for modules
 app.use('/users', usersRouter);
+app.use('/events', eventRouter);
+app.use('/activity', activityRouter);
 
 // Ping route to check health of instance for load balancer
 app.get('/ping', (req, res) => {

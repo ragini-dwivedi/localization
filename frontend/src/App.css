@@ -36,3 +36,7 @@ input[placeholder=Search] {
     overflow-y: auto;
     max-height: 400px;
 }
+
+.fieldsetStyle {
+    padding: 4%;
+}

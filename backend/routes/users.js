@@ -127,7 +127,7 @@ router.get('/getActivities/:email', async function(req, res, next) {
   let end = new Date();
   end.setHours(23,59,59,999);
   try {
-    let result = await client.db('gamification').collection('activities').find({email: email, createdDateTime: { $gte: start, $lte: end}}).toArray();
+    let result = await client.db('gamification').collection('userActivities').find({email: email, createdDateTime: { $gte: start, $lte: end}}).toArray();
     console.log(result);
     res.status(200).send(result);
   } catch (e) {
@@ -140,14 +140,84 @@ router.get('/getActivities/:email', async function(req, res, next) {
   }
 });
 
-router.get('/getGroups/:email', async function(req, res, next) {
+router.get('/getEvents/:email', async function(req, res, next) {
   let email = req.params.email;
   let end = new Date();
   end.setHours(0,0,0,0);
   try {
-    let result = await client.db('gamification').collection('userGroup').find({email: email, expirationDateTime: { $gte: end }}).toArray();
+    let result = await client.db('gamification').collection('userEvents').find({email: email, expirationDateTime: { $gte: end }}).toArray();
     console.log(result);
     res.status(200).send(result);
+  } catch (e) {
+    console.log(e);
+    if (e.message.includes('User with email doesnt exist') || e.message.includes('Wrong password')) {
+      res.status(500).send(e.message);
+    }else {
+      res.status(500).send(e);
+    }
+  }
+});
+
+router.get('/getStatistics/:email', async function(req, res, next) {
+  let email = req.params.email;
+  let end = new Date();
+  end.setDate(end.getDate() - 30);
+  end.setHours(0,0,0,0);
+  try {
+    let result = await client.db('gamification').collection('userStatistics').find({email: email, createdDateTime: { $gte: end }}).toArray();
+    console.log(result);
+    let data = [];
+    data.push(['x', 'walking', 'running']);
+    let temp = [];
+    for (let i = 0; i < result.length; i++){
+      temp = [];
+      temp.push(i);
+      temp.push(result[i].walking);
+      temp.push(result[i].running);
+      data.push(temp)
+    }
+    res.status(200).send(data);
+  } catch (e) {
+    console.log(e);
+    if (e.message.includes('User with email doesnt exist') || e.message.includes('Wrong password')) {
+      res.status(500).send(e.message);
+    }else {
+      res.status(500).send(e);
+    }
+  }
+});
+
+
+router.post('/addUserStatistics', async function(req, res, next) {
+  let email = req.body.email;
+  let statisticsDate = new Date(req.body.statisticsDate);
+  statisticsDate.setHours(24,0,0,0);
+  let walking = parseInt(req.body.walking);
+  let running = parseInt(req.body.running);
+
+  try {
+    let result = await client.db('gamification').collection('userStatistics').find({email: email, createdDateTime: statisticsDate }).toArray();
+    console.log(result);
+    if (result.length > 0){
+      let myquery = { email: email, createdDateTime: statisticsDate };
+      let newvalues = { $set: {walking: walking, running: running } };
+      let result_new = await client.db('gamification').collection('userStatistics').updateOne(myquery, newvalues, function(err, data) {
+        if (err){
+          throw (err.message);
+        } else {
+          res.status(200).send("user statistics added successfully");
+        }
+      });
+    } else {
+      let myobj = { walking: walking, running: running, email: email, createdDateTime: new Date().getDate() };
+      let result_new = await client.db('gamification').collection('userStatistics').insertOne(myobj,function(err, data) {
+        if (err){
+          throw (err.message);
+        } else {
+          res.status(200).send("user statistics added successfully");
+        }
+      });
+    }
   } catch (e) {
     console.log(e);
     if (e.message.includes('User with email doesnt exist') || e.message.includes('Wrong password')) {

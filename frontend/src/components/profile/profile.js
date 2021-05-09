@@ -18,7 +18,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { Chart } from "react-google-charts";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -64,7 +64,8 @@ class Profile extends Component{
             fullName: "",
             phone: "",
             activityList: [],
-            userGroups: []
+            userEvents: [],
+            userStatistics: []
         }
     }
 
@@ -92,10 +93,20 @@ class Profile extends Component{
                 alert(err.response.data);
             });
 
-        axios.get(`${backendConfig}/users/getGroups/${localStorage.getItem("email")}`)
+        axios.get(`${backendConfig}/users/getEvents/${localStorage.getItem("email")}`)
             .then((response) => {
                 if (response.data){
-                    this.setState({userGroups : response.data });
+                    this.setState({userEvents : response.data });
+                }
+            })
+            .catch(err => {
+                alert(err.response.data);
+            });
+
+        axios.get(`${backendConfig}/users/getStatistics/${localStorage.getItem("email")}`)
+            .then((response) => {
+                if (response.data){
+                    this.setState({userStatistics : response.data });
                 }
             })
             .catch(err => {
@@ -138,11 +149,11 @@ class Profile extends Component{
     handleChange = (event) => {
         if (event.currentTarget.innerText.includes('ACTIVITIES')){
             this.setState({ tabValue : 1 });
-        } else if (event.currentTarget.innerText.includes('GROUPS')){
+        } else if (event.currentTarget.innerText.includes('EVENTS')){
             this.setState({ tabValue : 2 });
         } else if (event.currentTarget.innerText.includes('PERSONAL')){
             this.setState({ tabValue : 0 });
-        } else if (event.currentTarget.innerText.includes('GUIDED PROGRAMS')){
+        } else if (event.currentTarget.innerText.includes('STATISTICS')){
             this.setState({ tabValue : 3 });
         }
     };
@@ -150,16 +161,17 @@ class Profile extends Component{
     handleChangeIndex = (event) => {
         if (event.currentTarget.innerText.includes('ACTIVITIES')){
             this.setState({ tabValue : 1 });
-        } else if (event.currentTarget.innerText.includes('GROUPS')){
+        } else if (event.currentTarget.innerText.includes('EVENTS')){
             this.setState({ tabValue : 2 });
         } else if (event.currentTarget.innerText.includes('PERSONAL')){
             this.setState({ tabValue : 0 });
-        } else if (event.currentTarget.innerText.includes('GUIDED PROGRAMS')){
+        } else if (event.currentTarget.innerText.includes('STATISTICS')){
             this.setState({ tabValue : 3 });
         }
     };
 
     render() {
+
         return (
             <div>
                 <NavBar />
@@ -180,8 +192,8 @@ class Profile extends Component{
                                     >
                                         <Tab label="Personal" {...a11yProps(0)} />
                                         <Tab label="Activities" {...a11yProps(1)} />
-                                        <Tab label="Groups" {...a11yProps(2)} />
-                                        <Tab label="Guided Programs" {...a11yProps(3)} />
+                                        <Tab label="Events" {...a11yProps(2)} />
+                                        <Tab label="Statistics" {...a11yProps(3)} />
                                     </Tabs>
                                 </AppBar>
                                 <SwipeableViews
@@ -257,7 +269,7 @@ class Profile extends Component{
                                                             <tbody>
                                                                 <tr>
                                                                     <td>
-                                                                        <img src={row.activityId} alt="image" style={{
+                                                                        <img src={row.activityImage} alt="image" style={{
                                                                             height: "100px",
                                                                             width: "100px"
                                                                         }}/>
@@ -292,22 +304,22 @@ class Profile extends Component{
                                                             <Table aria-label="customized table">
                                                                 <TableHead>
                                                                     <TableRow>
-                                                                        <TableCell><label>Group Image</label></TableCell>
-                                                                        <TableCell><label>Group Name</label></TableCell>
-                                                                        <TableCell><label>Group Description</label></TableCell>
+                                                                        <TableCell><label>Event Image</label></TableCell>
+                                                                        <TableCell><label>Event Name</label></TableCell>
+                                                                        <TableCell><label>Event Description</label></TableCell>
                                                                     </TableRow>
                                                                 </TableHead>
                                                                 <TableBody className="customTable">
-                                                                    {this.state.userGroups.map((row) => (
+                                                                    {this.state.userEvents.map((row) => (
                                                                         <TableRow>
                                                                             <TableCell component="th" scope="row">
-                                                                                <img src={row.groupImage} alt="image" style={{
+                                                                                <img src={row.eventImage} alt="image" style={{
                                                                                     height: "100px",
                                                                                     width: "100px"
                                                                                 }}/>
                                                                             </TableCell>
-                                                                            <TableCell>{row.groupName}</TableCell>
-                                                                            <TableCell>{row.groupDescription}</TableCell>
+                                                                            <TableCell>{row.eventName}</TableCell>
+                                                                            <TableCell>{row.eventDescription}</TableCell>
                                                                         </TableRow>
                                                                     ))}
                                                                 </TableBody>
@@ -324,7 +336,25 @@ class Profile extends Component{
                                             <br />
                                             <div className="row" >
                                                 <div className="col-md-12">
-                                                    Item FOUR
+                                                    <Chart
+                                                        width={'1200px'}
+                                                        height={'400px'}
+                                                        chartType="LineChart"
+                                                        loader={<div>Loading Chart</div>}
+                                                        data={this.state.userStatistics}
+                                                        options={{
+                                                            hAxis: {
+                                                                title: 'Week',
+                                                            },
+                                                            vAxis: {
+                                                                title: 'Miles',
+                                                            },
+                                                            series: {
+                                                                1: { curveType: 'function' },
+                                                            },
+                                                        }}
+                                                        rootProps={{ 'data-testid': '2' }}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>

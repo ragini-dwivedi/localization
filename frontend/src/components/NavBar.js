@@ -89,7 +89,12 @@ export default function BootstrapNavbar() {
                                     <Navbar.Collapse id="basic-navbar-nav">
                                         <Nav className="mr-auto">
                                             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                                            <Nav.Link href="/profile">Profile</Nav.Link>
+                                            <NavDropdown title="User" id="basic-nav-dropdown">
+                                                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                                                <NavDropdown.Item href="/addstatistics">Add Statistics</NavDropdown.Item>
+                                                <NavDropdown.Item href="/addevents">Add Events</NavDropdown.Item>
+                                                <NavDropdown.Item href="/addactivities">Add Activities</NavDropdown.Item>
+                                            </NavDropdown>
                                             <Nav.Link href="/badges">Badges</Nav.Link>
                                             <Nav.Link href="/community">Community</Nav.Link>
                                         </Nav>

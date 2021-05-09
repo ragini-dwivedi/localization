@@ -5,6 +5,9 @@ import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
 import Community from './community/Community';
 import Badges from './home/Badges';
+import AddEvents from './activity/events';
+import AddActivities from './activity/activities';
+import AddStatistics from './activity/statistics';
 
 //Create a Main Component
 const Main = () => {
@@ -44,6 +47,30 @@ const Main = () => {
                         return <Redirect to="/" />;
                     }
                     }} >
+                </Route>
+                <Route path="/addevents" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <AddEvents/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/addstatistics" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <AddStatistics/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/addactivities" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <AddActivities/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
                 </Route>
                 <Route path="/">
                     <LandingPage/>
