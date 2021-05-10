@@ -14,7 +14,7 @@ export default function Badges() {
 
     useEffect(async () => {
       try {
-        let result = await axios.get(`${backendConfig}/badges/getBadges`);
+        let result = await axios.get(`${backendConfig}/badges/getBadges/${localStorage.getItem('email')}`);
         set_data_all(result.data.data_all);
         set_data_personal(result.data.data_personal);
       }catch (e) {
