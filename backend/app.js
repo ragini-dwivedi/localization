@@ -8,6 +8,7 @@ var cors = require('cors');
 let usersRouter = require('./routes/users');
 let eventRouter = require('./routes/events');
 let activityRouter = require('./routes/activity');
+let adminRouter = require('./routes/admin');
 
 let app = express()
 
@@ -28,6 +29,7 @@ app.use(cors({
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
 app.use('/activity', activityRouter);
+app.use('/admin', adminRouter);
 
 // Ping route to check health of instance for load balancer
 app.get('/ping', (req, res) => {

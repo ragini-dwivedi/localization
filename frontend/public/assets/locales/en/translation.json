@@ -10,5 +10,21 @@
   "leadership_title": "Leadership Dashboard",
   "email_title": "Email",
   "image_title": "Image",
-  "name_title": "Name"
+  "name_title": "Name",
+  "admin_board": "User Board",
+  "admin_dashboard": "Admin Dashboard",
+  "project_title": "Fitness Gamification",
+  "admin_add_activity": "Add Activities",
+  "admin_add_event": "Add Events",
+  "admin_add_community": "Add Communities",
+  "admin_add_badge": "Add Badges",
+  "add_activity": "Add Activity",
+  "add_event": "Add Event",
+  "add_statistics": "Add Statistics",
+  "add_community": "Add Community",
+  "add_badge": "Add Badge",
+  "dashboard": "Dashboard",
+  "badges": "Badges",
+  "community": "Community",
+  "profile": "Profile"
 }

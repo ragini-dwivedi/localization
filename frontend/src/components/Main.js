@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Switch, Route, Redirect }  from 'react-router-dom';
 import UserDashboard from './home/UserDashboard';
+import AdminDashboard from './home/AdminDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
 import Community from './community/Community';
@@ -8,6 +9,11 @@ import Badges from './home/Badges';
 import AddEvents from './activity/events';
 import AddActivities from './activity/activities';
 import AddStatistics from './activity/statistics';
+
+import AddEventsAdmin from './Admin/addEvent'
+import AddActivitiesAdmin from './Admin/addActivity'
+import AddCommunityAdmin from './Admin/addCommunity'
+import AddBadgesAdmin from './Admin/addBadges'
 
 //Create a Main Component
 const Main = () => {
@@ -67,6 +73,46 @@ const Main = () => {
                 <Route path="/addactivities" render={() => {
                     if (localStorage.getItem('email')) {
                         return <AddActivities/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/adminDashboard" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <AdminDashboard/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/admin/AddActivities" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <AddActivitiesAdmin/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/admin/AddCommunities" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <AddCommunityAdmin/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/admin/AddBadges" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <AddBadgesAdmin/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/admin/AddEvents" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <AddEventsAdmin/>;
                     } else {
                         return <Redirect to="/" />;
                     }

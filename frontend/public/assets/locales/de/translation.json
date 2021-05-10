@@ -10,5 +10,21 @@
   "leadership_title": "Führungs-Dashboard",
   "email_title": "Email",
   "image_title": "Bild",
-  "name_title": "Name"
+  "name_title": "Name",
+  "admin_board": "Benutzerplatine",
+  "admin_dashboard": "Admin Instrumententafel",
+  "project_title": "Fitness Gamification",
+  "admin_add_activity": "Hinzufügen Aktivität",
+  "admin_add_event": "Hinzufügen Veranstaltung",
+  "admin_add_community": "Hinzufügen Gemeinschaft",
+  "admin_add_badge": "Hinzufügen Abzeichen",
+  "add_activity": "Hinzufügen Aktivität",
+  "add_event": "Hinzufügen Veranstaltung",
+  "add_statistics": "Hinzufügen Statistiken",
+  "add_community": "Hinzufügen Gemeinschaft",
+  "add_badge": "Hinzufügen Abzeichen",
+  "dashboard": "Instrumententafel",
+  "badges": "Abzeichen",
+  "community": "Gemeinschaft",
+  "profile": "Profil"
 }

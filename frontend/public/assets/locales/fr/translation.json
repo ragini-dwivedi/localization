@@ -10,5 +10,21 @@
   "leadership_title": "Tableau de bord du leadership",
   "email_title": "E-mail",
   "image_title": "Image",
-  "name_title": "Nom"
+  "name_title": "Nom",
+  "admin_board": "Tableau des utilisateurs",
+  "admin_dashboard": "Admin tableau de bord",
+  "project_title": "Aptitude Gamification",
+  "admin_add_activity": "Ajouter Activité",
+  "admin_add_event": "Ajouter Événements",
+  "admin_add_community": "Ajouter Communautés",
+  "admin_add_badge": "Ajouter Badges",
+  "add_activity": "Ajouter Activité",
+  "add_event": "Ajouter Événements",
+  "add_statistics": "Ajouter Statistiques",
+  "add_community": "Ajouter Communautés",
+  "add_badge": "Ajouter Badges",
+  "dashboard": "Tableau de bord",
+  "badges": "Badges",
+  "community": "Communautés",
+  "profile": "Profil"
 }

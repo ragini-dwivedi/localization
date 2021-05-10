@@ -89,15 +89,13 @@ export default function BootstrapNavbar() {
                                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                     <Navbar.Collapse id="basic-navbar-nav">
                                         <Nav className="mr-auto">
-                                            <Nav.Link href="/dashboard">{t('dashboard')}</Nav.Link>
-                                            <NavDropdown title="User" id="basic-nav-dropdown">
-                                                <NavDropdown.Item href="/profile">{t('profile')}</NavDropdown.Item>
-                                                <NavDropdown.Item href="/addstatistics">{t('add_statistics')}</NavDropdown.Item>
-                                                <NavDropdown.Item href="/addevents">{t('add_event')}</NavDropdown.Item>
-                                                <NavDropdown.Item href="/addactivities">{t('add_activity')}</NavDropdown.Item>
+                                            <Nav.Link href="/adminDashboard">{t('admin_dashboard')}</Nav.Link>
+                                            <NavDropdown title="Admin" id="basic-nav-dropdown">
+                                                <NavDropdown.Item href="/admin/AddActivities">{t('admin_add_activity')}</NavDropdown.Item>
+                                                <NavDropdown.Item href="/admin/AddEvents">{t('admin_add_event')}</NavDropdown.Item>
+                                                <NavDropdown.Item href="/admin/AddCommunities">{t('admin_add_community')}</NavDropdown.Item>
+                                                <NavDropdown.Item href="/admin/AddBadges">{t('admin_add_badge')}</NavDropdown.Item>
                                             </NavDropdown>
-                                            <Nav.Link href="/badges">{t('badges')}</Nav.Link>
-                                            <Nav.Link href="/community">{t('community')}</Nav.Link>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Navbar>
