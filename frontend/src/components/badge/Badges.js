@@ -26,7 +26,9 @@ export default function Badges() {
     return (
         <div className='parent'>
           <NavBar />
-          <div className="container">
+          <br />
+          <br />
+          <div className="container segment" style={{ padding: '2%'}}>
             <div className='row'>
               <h3>{`Today's date is ${new Date().getUTCMonth()}/ ${new Date().getUTCDate()}/ ${new Date().getUTCFullYear()}`}</h3>
               <h3>Badges Earned by {localStorage.getItem('fullName')}</h3>
