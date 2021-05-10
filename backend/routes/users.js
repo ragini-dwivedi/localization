@@ -5,8 +5,13 @@ let database = require('../database/mongodb');
 let { client } = require('../database/mongodb');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send({ message: 'respond with a resource', error: null});
+router.get('/', async function(req, res, next) {
+  try {
+    let result = await client.db('gamification').collection('user').find({}).toArray();
+    res.status(200).send(result);
+  }catch(e) {
+    res.status(500).send(e);
+  }
 });
 
 /* POST create user for fitness gamification */
@@ -225,6 +230,16 @@ router.post('/addUserStatistics', async function(req, res, next) {
     }else {
       res.status(500).send(e);
     }
+  }
+});
+
+router.post('/createChallenge', async function (req, res, next) {
+  try {
+    console.log(req.body);
+    let result = await client.db('gamification').collection('challenges').insertOne(req.body);
+    res.status(200).send("Challenge created successfully!");
+  }catch(e) {
+    res.status(500).send(e);
   }
 });
 
