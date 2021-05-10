@@ -1,45 +1,34 @@
 //Export the App component so that it can be used in index.js
-import NavBar from "../NavBar";
 import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import axios from 'axios';
+
+import backendConfig from "../../backendConfig";
+import NavBar from "../NavBar";
 import '../../App'
 import './Community.css';
-import { Container, Row, Col, Button } from "react-bootstrap";
 
 export default function Community() {
 
   const [community, setCommunity] = useState('');
+  const [communities, setCommunities] = useState([]);
 
-  let communties = [
-    {
-      community_name: 'San Jose hikers',
-      location: 'San Jose, CA',
-      members: ['Aswin Prasad', 'Ragini Dwidedi', 'Bharath'],
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUArpj2kQywFHKx-h29hUeotlZGb2Q3QX4sA&usqp=CAU'
-    }, 
-    {
-      community_name: 'SFO bikers',
-      location: 'San Francisco, CA',
-      members: ['Aswin Prasad', 'Ragini Dwidedi', 'Bharath'],
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXOkpFlpXywusVESVsW3Jzev2XcsXQAmunZw&usqp=CAU'
-    }, 
-    {
-      community_name: 'Utah rowers',
-      location: 'Salt Lake City, UT',
-      members: ['Ragini Dwidedi', 'Bharath'],
-      image: 'https://i.natgeofe.com/k/7577bccf-bc12-4df7-ba8c-6fafd6dcd88b/utah-zion.jpg?w=636&h=358'
+  useEffect(async () => {
+    try {
+      let result = await axios.get(`${backendConfig}/communities/getCommunities`);
+      setCommunities(result.data);
+    }catch (e) {
+      console.log(e);
     }
-  ]
+
+  }, []);
 
   const handleCommunityClick = (e) => {
-    let communityObject = communties.find((communityObject)=> {
+    let communityObject = communities.find((communityObject)=> {
       return communityObject.community_name === e.target.innerHTML
     });
     setCommunity(communityObject);
   }
-
-  useEffect(() => {
-    
-  }, [community])
 
   return (
     <div className='parent'>
@@ -50,7 +39,7 @@ export default function Community() {
             <div>
               <h2> List of communties</h2>
               {
-                communties.map((community) => {
+                communities.map((community) => {
                   return (
                     <div onClick={handleCommunityClick} style={{border: 'black solid 1px', padding: '1rem', margin: '1rem', background: '#0d6efd'}}>
                       {community.community_name}

@@ -4,7 +4,7 @@ import UserDashboard from './home/UserDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
 import Community from './community/Community';
-import Badges from './home/Badges';
+import Badges from './badge/Badges';
 import AddEvents from './activity/events';
 import AddActivities from './activity/activities';
 import AddStatistics from './activity/statistics';

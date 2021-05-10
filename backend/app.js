@@ -8,6 +8,8 @@ var cors = require('cors');
 let usersRouter = require('./routes/users');
 let eventRouter = require('./routes/events');
 let activityRouter = require('./routes/activity');
+let badgesRouter = require('./routes/badges');
+let communitiesRouter = require('./routes/communities');
 
 let app = express()
 
@@ -28,6 +30,8 @@ app.use(cors({
 app.use('/users', usersRouter);
 app.use('/events', eventRouter);
 app.use('/activity', activityRouter);
+app.use('/badges', badgesRouter);
+app.use('/communities', communitiesRouter)
 
 // Ping route to check health of instance for load balancer
 app.get('/ping', (req, res) => {
