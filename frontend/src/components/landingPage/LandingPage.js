@@ -161,12 +161,22 @@ class LandingPage extends Component {
                 password : this.state.password
             };
 
+            if (this.state.email === "admin@gmail.com"){
+                localStorage.setItem("role", "admin");
+            } else {
+                localStorage.setItem("role", "user");
+            }
+
             axios.post(`${backendConfig}/users/login`, data)
                 .then((response) => {
                     localStorage.setItem("email", this.state.email);
                     localStorage.setItem("fullName", response.data.fullName);
                     localStorage.setItem("phone", response.data.phone);
-                    window.location.href = "/dashboard";
+                    if (this.state.email === "admin@gmail.com"){
+                        window.location.href = "/adminDashboard";
+                    } else {
+                        window.location.href = "/dashboard";
+                    }
                 })
                 .catch(err => {
                     alert(err.response.data);
@@ -190,6 +200,11 @@ class LandingPage extends Component {
                     localStorage.setItem("email", this.state.email);
                     localStorage.setItem("fullName", response.data.fullName);
                     localStorage.setItem("phone", response.data.phone);
+                    if (this.state.email === "admin@gmail.com"){
+                        localStorage.setItem("role", "admin");
+                    } else {
+                        localStorage.setItem("role", "user");
+                    }
                     window.location.href = "/dashboard";
                 })
                 .catch(err => {
