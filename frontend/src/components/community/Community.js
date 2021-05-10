@@ -33,7 +33,9 @@ export default function Community() {
   return (
     <div className='parent'>
       <NavBar />
-      <Container className="container" style={{background: 'white', marginTop: '2rem'}}>
+      <br />
+      <br />
+      <Container className="container segment" style={{background: 'white', marginTop: '2rem', padding: '2%'}}>
         <Row>
           <Col className='col-md-3 communties_list'>
             <div>
