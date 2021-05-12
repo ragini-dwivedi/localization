@@ -95,9 +95,11 @@ export default function BootstrapNavbar() {
                                                 <NavDropdown.Item href="/addstatistics">{t('add_statistics')}</NavDropdown.Item>
                                                 <NavDropdown.Item href="/addevents">{t('add_event')}</NavDropdown.Item>
                                                 <NavDropdown.Item href="/addactivities">{t('add_activity')}</NavDropdown.Item>
+                                                <NavDropdown.Item href="/addChallenge">{t('add_challenge')}</NavDropdown.Item>
                                             </NavDropdown>
                                             <Nav.Link href="/badges">{t('badges')}</Nav.Link>
                                             <Nav.Link href="/community">{t('community')}</Nav.Link>
+                                            <Nav.Link href="/polls">{t('polls')}</Nav.Link>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Navbar>

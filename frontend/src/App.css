@@ -40,3 +40,8 @@ input[placeholder=Search] {
 .fieldsetStyle {
     padding: 4%;
 }
+
+.MuiFormControl-root {
+    width: 100%;
+}
+

@@ -10,12 +10,12 @@
 
 .badges-2 {
   border: black solid 1px;
-  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 1rem;
   background-color: aliceblue;
   width: 50vw;
+  text-align: center;
 }
 
 .item {

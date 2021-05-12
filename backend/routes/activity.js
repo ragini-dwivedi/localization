@@ -76,7 +76,7 @@ router.get('/getWeeklyDetails/:email', async function(req, res, next) {
         let score = 0;
         for (let i = 0; i < result.length; i++) {
             if (result[i]._id === email){
-                rank = i;
+                rank = i + 1;
                 score = result[i].count;
             }
         }
@@ -102,7 +102,7 @@ router.get('/getOverAllDetails/:email', async function(req, res, next) {
         let score = 0;
         for (let i = 0; i < result.length; i++) {
             if (result[i]._id === email){
-                rank = i;
+                rank = i + 1;
                 score = result[i].count;
             }
         }

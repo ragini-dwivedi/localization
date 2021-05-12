@@ -29,7 +29,8 @@ router.post('/createuser', async function(req, res, next) {
       throw Error('User already exists');
     } else {
       result = await client.db('gamification').collection('user').insertOne(data);
-      res.status(200).send();
+      let result1 = await client.db('gamification').collection('user').findOne({email: email});
+      res.status(200).send(result1);
     }
   } catch (e) {
     if (e.message.includes('User already exists')) {

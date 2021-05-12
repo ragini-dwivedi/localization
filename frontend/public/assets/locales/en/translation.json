@@ -26,5 +26,7 @@
   "dashboard": "Dashboard",
   "badges": "Badges",
   "community": "Community",
-  "profile": "Profile"
+  "profile": "Profile",
+  "add_challenge": "Add Challenge",
+  "polls": "Polls"
 }

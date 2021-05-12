@@ -40,10 +40,11 @@ export default function Community() {
           <Col className='col-md-3 communties_list'>
             <div>
               <h2> List of communties</h2>
+              <br />
               {
                 communities.map((community) => {
                   return (
-                    <div onClick={handleCommunityClick} style={{border: 'black solid 1px', padding: '1rem', margin: '1rem', background: '#0d6efd'}}>
+                    <div onClick={handleCommunityClick} style={{border: 'black solid 1px', padding: '1rem', margin: '1rem', background: '#0d6efd', cursor: 'pointer'}}>
                       {community.community_name}
                     </div>
                   )
@@ -57,9 +58,10 @@ export default function Community() {
             {
               community && 
               <div className='community_content'>
-                <h2 style={{borderBottom: 'black solid 1px'}}> Community name: {community.community_name} </h2>
-                <h2> Location: {community.location} </h2>
-                <h2> Number of members: {community.members.length} </h2>
+                <h3 style={{borderBottom: 'black solid 1px'}}> Community name: {community.community_name} </h3>
+                <br />
+                <h5> Location: {community.location} </h5>
+                <h5> Number of members: {community.members.length} </h5>
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                   <img src={community.image} width='150px' height='150px' />
                 </div>
@@ -78,6 +80,7 @@ export default function Community() {
                     <Button>Leave the community</Button>:
                     <Button>Join the community</Button>
                   }
+                  <br />
                 </div>
               </div>
             }

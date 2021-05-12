@@ -15,6 +15,7 @@ import AddActivitiesAdmin from './Admin/addActivity'
 import AddCommunityAdmin from './Admin/addCommunity'
 import AddBadgesAdmin from './Admin/addBadges'
 import AddChallenge from './challenge/AddChallenge';
+import Polls from './notification/poll';
 
 //Create a Main Component
 const Main = () => {
@@ -82,6 +83,14 @@ const Main = () => {
                 <Route path="/addChallenge" render={() => {
                     if (localStorage.getItem('email')) {
                         return <AddChallenge />;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/polls" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <Polls />;
                     } else {
                         return <Redirect to="/" />;
                     }
