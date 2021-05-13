@@ -56,7 +56,7 @@ export class Station extends Component {
                     this.state.stations.map((station) => {
                       return (
                         <Marker
-                        title={station.name}
+                        title={station.dock_count} Member Activities
                         name={station.name}
                         onClick={this.onMarkerClick}
                         onClose={this.onInfoWindowClose}
@@ -70,7 +70,8 @@ export class Station extends Component {
                 onClose={this.onInfoWindowClose}
                 visible={this.state.showingInfoWindow}>
                 <div>
-                  <h1>{this.state.selectedPlace.name}</h1>
+                  <h5>{this.state.selectedPlace.name}</h5>
+                  <p>{this.state.selectedPlace.title} Member Activities</p>
                 </div>
               </InfoWindow>
 
