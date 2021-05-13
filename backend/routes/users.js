@@ -246,4 +246,14 @@ router.post('/createChallenge', async function (req, res, next) {
   }
 });
 
+router.post('/createLocationHub', async function (req, res, next) {
+  try {
+    console.log(req.body);
+    let result = await client.db('gamification').collection('stations').insertOne(req.body);
+    res.status(200).send("LocationHub created successfully!");
+  }catch(e) {
+    res.status(500).send(e);
+  }
+});
+
 module.exports = router;

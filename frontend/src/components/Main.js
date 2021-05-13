@@ -17,6 +17,7 @@ import AddActivitiesAdmin from './Admin/addActivity'
 import AddCommunityAdmin from './Admin/addCommunity'
 import AddBadgesAdmin from './Admin/addBadges'
 import AddChallenge from './challenge/AddChallenge';
+import AddLocationHub from './locationhub/AddLocationHub';
 import Polls from './notification/poll';
 import CalculatePoints from './Admin/caculatePoints';
 
@@ -100,6 +101,14 @@ const Main = () => {
                     }
                 }} >
                 </Route>
+                <Route path="/addLocationHub" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <AddLocationHub />;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>                
                 <Route path="/polls" render={() => {
                     if (localStorage.getItem('email')) {
                         return <Polls />;
