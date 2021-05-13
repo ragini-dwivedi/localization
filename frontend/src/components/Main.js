@@ -16,6 +16,7 @@ import AddCommunityAdmin from './Admin/addCommunity'
 import AddBadgesAdmin from './Admin/addBadges'
 import AddChallenge from './challenge/AddChallenge';
 import Polls from './notification/poll';
+import CalculatePoints from './Admin/caculatePoints';
 
 //Create a Main Component
 const Main = () => {
@@ -131,6 +132,14 @@ const Main = () => {
                 <Route path="/admin/AddEvents" render={() => {
                     if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
                         return <AddEventsAdmin/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >
+                </Route>
+                <Route path="/calculatepoints" render={() => {
+                    if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
+                        return <CalculatePoints />;
                     } else {
                         return <Redirect to="/" />;
                     }

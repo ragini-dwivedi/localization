@@ -344,7 +344,7 @@ class Profile extends Component{
                                                         data={this.state.userStatistics}
                                                         options={{
                                                             hAxis: {
-                                                                title: 'Week',
+                                                                title: 'Month',
                                                             },
                                                             vAxis: {
                                                                 title: 'Miles',

@@ -70,7 +70,7 @@ router.get('/getWeeklyDetails/:email', async function(req, res, next) {
         start.setHours(0,0,0,0);
         start.setDate(start.getDate() - 7 );
         let end = new Date();
-        end.setHours(0,0,0,0);
+        end.setHours(23,59,59,999);
         let result = await client.db('gamification').collection('leaderBoard').aggregate([{ "$match": { "creationDateTime": { $gte: start, $lte: end }}},{ $group: { _id: "$email", count: { $sum: "$score" } }},{ $sort : { "count" : -1 } }]).toArray();
         let rank = 0;
         let score = 0;
@@ -96,7 +96,7 @@ router.get('/getOverAllDetails/:email', async function(req, res, next) {
         start.setHours(0,0,0,0);
         start.setDate(start.getDate() - 7 );
         let end = new Date();
-        end.setHours(0,0,0,0);
+        end.setHours(23,59,59,999);
         let result = await client.db('gamification').collection('leaderBoard').aggregate([{ $group: { _id: "$email", count: { $sum: "$score" }}},{ $sort : { "count" : -1 } }]).toArray();
         let rank = 0;
         let score = 0;
@@ -123,7 +123,7 @@ router.get('/getAllDetailsForDashboard/:type', async function(req, res, next) {
         start.setHours(0,0,0,0);
         start.setDate(start.getDate() - 7 );
         let end = new Date();
-        end.setHours(0,0,0,0);
+        end.setHours(23,59,59,999);
         if (type === 1 || type === "1") {
             //db.leaderBoard.aggregate( [   {     $group: {        _id: "$email",        count: { $sum: "$score" }     }   } ] );
             result = await client.db('gamification').collection('leaderBoard').aggregate([{ "$match": { "creationDateTime": { $gte: start, $lte: end }}},{ $group: { _id: "$email", count: { $sum: "$score" } }},{ $sort : { "count" : -1 } }]).toArray();

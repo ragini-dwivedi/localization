@@ -104,9 +104,30 @@ router.get('/getUserPolls/:email', async function(req, res, next) {
 
 router.post('/vote', async function(req, res, next) {
     try {
-        let email = req.params.email;
+        let email = req.body.email;
         let questionSelected = req.body.questionSelected;
         let optionSelected = req.body.optionSelected;
+        let record = await client.db('gamification').collection('userPolls').find({ email: email }).toArray();
+        let result;
+        if (record.length > 0){
+            if (questionSelected === "question1"){
+                result = await client.db('gamification').collection('userPolls').updateOne({ email: email }, { $set: { "question1": optionSelected } });
+            } else if (questionSelected === "question2") {
+                result = await client.db('gamification').collection('userPolls').updateOne({ email: email }, { $set: { "question2": optionSelected } });
+            } else if (questionSelected === "question3") {
+                result = await client.db('gamification').collection('userPolls').updateOne({ email: email }, { $set: { "question3": optionSelected } });
+            }
+        } else {
+            if (questionSelected === "question1"){
+                result = await client.db('gamification').collection('userPolls').insertOne({ email: email, question1: optionSelected, question2: "", question3: "", createdDate: new Date()});
+            } else if (questionSelected === "question2") {
+                result = await client.db('gamification').collection('userPolls').insertOne({ email: email, question1: "", question2: optionSelected, question3: "", createdDate: new Date()});
+            } else if (questionSelected === "question3") {
+                result = await client.db('gamification').collection('userPolls').insertOne({ email: email, question1: "", question2: "", question3: optionSelected, createdDate: new Date()});
+            }
+        }
+
+
         let question1 = await client.db('gamification').collection('userPolls').aggregate([{ $group: { _id: "$question1", count : {$sum : 1}}},{ $sort : { "count" : -1 } }]).toArray();
         let question2 = await client.db('gamification').collection('userPolls').aggregate([{ $group: { _id: "$question2", count : {$sum : 1}}},{ $sort : { "count" : -1 } }]).toArray();
         let question3 = await client.db('gamification').collection('userPolls').aggregate([{ $group: { _id: "$question3", count : {$sum : 1}}},{ $sort : { "count" : -1 } }]).toArray();

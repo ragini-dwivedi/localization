@@ -64,10 +64,18 @@ class Poll extends Component {
 
     voteEvent = (event) => {
         //alert(this.state.question1);
+        let value = "";
+        if (event.currentTarget.name === "question1") {
+            value = this.state.question1;
+        } else if (event.currentTarget.name === "question2") {
+            value = this.state.question2;
+        } else if (event.currentTarget.name === "question3") {
+            value = this.state.question3;
+        }
         axios.post(`${backendConfig}/notification/vote`, {
             email: localStorage.getItem("email"),
-            questionSelected: 1,
-            optionSelected: 1
+            questionSelected: event.currentTarget.name,
+            optionSelected: value
         })
             .then((response) => {
                 if (response.data){
@@ -104,7 +112,7 @@ class Poll extends Component {
                     <div className="row" >
                         <div className="col-md-12">
                             <fieldset className="fieldsetStyle">
-                                <legend>Poll</legend>
+                                <legend>Polls</legend>
                                 <br />
                                 <br />
                                 <div className="container">
@@ -155,7 +163,7 @@ class Poll extends Component {
                                                             }}>
                                                                 <Button style={{
                                                                     marginLeft: '20px'
-                                                                }} onClick={this.voteEvent} color="primary">Vote</Button>
+                                                                }} onClick={this.voteEvent} name="question1" color="primary">Vote</Button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -212,7 +220,7 @@ class Poll extends Component {
                                                             }}>
                                                                 <Button style={{
                                                                     marginLeft: '20px'
-                                                                }} onClick={this.voteEvent} color="primary">Vote</Button>
+                                                                }} onClick={this.voteEvent} name="question2" color="primary">Vote</Button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -268,7 +276,7 @@ class Poll extends Component {
                                                             }}>
                                                                 <Button style={{
                                                                     marginLeft: '20px'
-                                                                }} onClick={this.voteEvent} color="primary">Vote</Button>
+                                                                }} onClick={this.voteEvent} name="question3" color="primary">Vote</Button>
                                                             </div>
                                                         </div>
                                                     </div>

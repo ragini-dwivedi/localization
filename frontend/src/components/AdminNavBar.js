@@ -96,6 +96,7 @@ export default function BootstrapNavbar() {
                                                 <NavDropdown.Item href="/admin/AddCommunities">{t('admin_add_community')}</NavDropdown.Item>
                                                 <NavDropdown.Item href="/admin/AddBadges">{t('admin_add_badge')}</NavDropdown.Item>
                                             </NavDropdown>
+                                            <Nav.Link href="/calculatepoints">{t('calculate_points')}</Nav.Link>
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Navbar>

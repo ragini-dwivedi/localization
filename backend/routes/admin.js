@@ -86,4 +86,39 @@ router.post('/addBadge', async function(req, res, next) {
     }
 });
 
+router.post('/calculatepoints', async function(req, res, next) {
+    let currentDate = req.body.currentDate;
+    let start = new Date(currentDate);
+    start.setHours(-7,0,0,0);
+    let end = new Date();
+    end.setHours(23,59,59,999);
+
+    try{
+        let result_new = await client.db('gamification').collection('leaderBoard').find({ creationDateTime: { $gte: start, $lte: end }}).toArray();
+        if (result_new.length > 0){
+            res.status(200).send("Points are already added to leader dashboard");
+        } else {
+            let result = await client.db('gamification').collection('userActivities').aggregate([{ "$match": { "createdDateTime": { $gte: start, $lte: end }}}, { $group: { _id: "$email", count: { $sum: "$activityScore" } }},{ $sort : { "count" : -1 } } ]).toArray();
+            if (result.length > 0) {
+                let myobj = [];
+                for (let i = 0; i < result.length; i++){
+                    let temp = {};
+                    temp["email"] = result[i]._id;
+                    temp["count"] = result[i].count;
+                    temp["creationDateTime"] = start;
+                    myobj.push(temp)
+                }
+
+                let r1 = await client.db('gamification').collection('leaderBoard').insertMany(myobj);
+                res.status(200).send("Points added to database successfully");
+            } else {
+                res.status(200).send("No points to be add to leader dashboard collection");
+            }
+        }
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+});
+
 module.exports = router;
