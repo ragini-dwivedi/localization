@@ -5,7 +5,8 @@ import AdminDashboard from './home/AdminDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
 import Community from './community/Community';
-import Station from './station/Station';
+import NearMe from './nearme/NearMe';
+import Insights from './insights/Insights';
 import Badges from './badge/Badges';
 import AddEvents from './activity/events';
 import AddActivities from './activity/activities';
@@ -18,6 +19,7 @@ import AddBadgesAdmin from './Admin/addBadges'
 import AddChallenge from './challenge/AddChallenge';
 import Polls from './notification/poll';
 import CalculatePoints from './Admin/caculatePoints';
+
 
 //Create a Main Component
 const Main = () => {
@@ -58,9 +60,9 @@ const Main = () => {
                     }
                     }} >
                 </Route>
-                <Route path="/station" render={() => {
+                <Route path="/nearme" render={() => {
                     if (localStorage.getItem('email')) {
-                        return <Station/>;
+                        return <NearMe/>;
                     } else {
                         return <Redirect to="/" />;
                     }
@@ -105,6 +107,14 @@ const Main = () => {
                         return <Redirect to="/" />;
                     }
                 }} >
+                </Route>
+                <Route path="/insights" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <Insights />;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                }} >                 
                 </Route>
                 <Route path="/adminDashboard" render={() => {
                     if (localStorage.getItem('email') && (localStorage.getItem('role') === "admin")) {
@@ -153,7 +163,7 @@ const Main = () => {
                         return <Redirect to="/" />;
                     }
                 }} >
-                </Route>
+                </Route>               
                 <Route path="/">
                     <LandingPage/>
                 </Route>

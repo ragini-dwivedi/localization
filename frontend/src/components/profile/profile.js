@@ -63,6 +63,7 @@ class Profile extends Component{
             password : "",
             fullName: "",
             phone: "",
+            organization : "",
             activityList: [],
             userEvents: [],
             userStatistics: []
@@ -76,6 +77,7 @@ class Profile extends Component{
                     this.setState({username : response.data.username });
                     this.setState({password : response.data.password });
                     this.setState({phone : response.data.phone });
+                    this.setState({organization : response.data.organization });
                     this.setState({fullName : response.data.fullName });
                 }
             })
@@ -126,6 +128,9 @@ class Profile extends Component{
     fullnameChangeHandler = (e) => {
         this.setState({fullName : e.target.value})
     };
+    organizationChangeHandler = (e) => {
+        this.setState({organization : e.target.value})
+    };
 
     UpdateDetails = (event) => {
         event.preventDefault();
@@ -134,7 +139,8 @@ class Profile extends Component{
             fullName: this.state.fullName,
             email : localStorage.getItem("email"),
             password : this.state.password,
-            phone: this.state.phone
+            phone: this.state.phone,
+            organization : this.state.organization
         };
 
         axios.post(`${backendConfig}/users/updateuser`, data)
@@ -233,7 +239,7 @@ class Profile extends Component{
                                                                 onChange={this.passwordChangeHandler}
                                                                 placeholder="Enter the Password" />
                                                         </Form.Group>
-                                                        <Form.Group controlId="formUsername">
+                                                        <Form.Group controlId="formPhoneNumber">
                                                             <Form.Label>Phone</Form.Label>
                                                             <Form.Control
                                                                 type="text"
@@ -242,6 +248,15 @@ class Profile extends Component{
                                                                 onChange={this.phoneChangeHandler}
                                                                 placeholder="Enter the phone number" />
                                                         </Form.Group>
+                                                        <Form.Group controlId="formOrganization">
+                                                            <Form.Label>Organizaation</Form.Label>
+                                                            <Form.Control
+                                                                type="text"
+                                                                name="organization"
+                                                                value={this.state.organization}
+                                                                onChange={this.organizationChangeHandler}
+                                                                placeholder="Enter the organization" />
+                                                        </Form.Group>                                                       
                                                     </Form>
                                                 </div>
                                             </div>

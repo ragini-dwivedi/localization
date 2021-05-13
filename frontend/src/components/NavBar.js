@@ -99,8 +99,10 @@ export default function BootstrapNavbar() {
                                             </NavDropdown>
                                             <Nav.Link href="/badges">{t('badges')}</Nav.Link>
                                             <Nav.Link href="/community">{t('community')}</Nav.Link>
-                                            <Nav.Link href="/station">{t('station')}</Nav.Link>
+                                            <Nav.Link href="/nearme">{t('near_me')}</Nav.Link>
                                             <Nav.Link href="/polls">{t('polls')}</Nav.Link>
+                                            <Nav.Link href="/insights">{t('insights')}</Nav.Link>
+                                            
                                         </Nav>
                                     </Navbar.Collapse>
                                 </Navbar>

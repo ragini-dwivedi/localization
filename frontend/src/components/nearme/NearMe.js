@@ -5,7 +5,6 @@ import axios from 'axios';
 import backendConfig from "../../backendConfig";
 import NavBar from "../NavBar";
 import '../../App'
-import './Station.css';
 
 export class Station extends Component {
 

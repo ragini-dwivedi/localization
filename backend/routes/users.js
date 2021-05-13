@@ -20,8 +20,9 @@ router.post('/createuser', async function(req, res, next) {
   let username = req.body.username;
   let email = req.body.email;
   let phone = req.body.phone;
+  let organization = req.body.organization;
   let password = req.body.password;
-  let data = { fullName: fullName, username: username, phone: phone, email: email, password: password, creationTime: new Date()};
+  let data = { fullName: fullName, username: username, phone: phone, organization: organization, email: email, password: password, creationTime: new Date()};
 
   try {
     let result = await client.db('gamification').collection('user').findOne({email: email});
@@ -88,10 +89,11 @@ router.post('/updateuser', function(req, res, next) {
   let username = req.body.username;
   let email = req.body.email;
   let phone = req.body.phone;
+  let organization = req.body.organization;
   let password = req.body.password;
 
   let data1 = { email: email };
-  let data2 = { fullName: fullName, username: username, phone: phone, password: password, creationTime: new Date()};
+  let data2 = { fullName: fullName, username: username, phone: phone, organization : organization, password: password, creationTime: new Date()};
   database.updateOneData(data1, data2, 'user', function (err, details) {
     if (err){
       res.send({

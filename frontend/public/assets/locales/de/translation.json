@@ -26,9 +26,10 @@
   "dashboard": "Instrumententafel",
   "badges": "Abzeichen",
   "community": "Gemeinschaft",
-  "station": "In meiner Nähe",
+  "near_me": "In meiner Nähe",
   "profile": "Profil",
   "add_challenge": "Hinzufügen Herausforderung",
   "polls": "Umfragen",
-  "calculate_points": "Berechnung Punkte"
+  "calculate_points": "Berechnung Punkte",
+  "insights": "Einblicke"
 }

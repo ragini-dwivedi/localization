@@ -26,9 +26,10 @@
   "dashboard": "Dashboard",
   "badges": "Badges",
   "community": "Community",
-  "station": "Near Me",
+  "near_me": "Near Me",
   "profile": "Profile",
   "add_challenge": "Add Challenge",
   "polls": "Polls",
-  "calculate_points": "Calculate Points"
+  "calculate_points": "Calculate Points",
+  "insights": "Insights"
 }
