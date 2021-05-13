@@ -8,11 +8,13 @@ import '../../App'
 
 export class Station extends Component {
 
+
     state = {
       stations: [],
       activeMarker: {},
       selectedPlace: {},
-      showingInfoWindow: false
+      showingInfoWindow: false,
+      defaultLocation : { lat: 37.578494, lng: -122.035478 }
     }
 
     componentDidMount() {
@@ -21,6 +23,14 @@ export class Station extends Component {
           const stations = res.data;
           this.setState({ stations });
         })
+        var that = this;
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            that.setState({ defaultLocation : { lat: position.coords.latitude, lng: position.coords.longitude} });
+          });
+        } else {
+          alert("Sorry, your browser does not support HTML5 geolocation.");
+        }  
     }  
 
     onMarkerClick = (props, marker) =>
@@ -44,13 +54,13 @@ export class Station extends Component {
         });
     };
 
-    render() {     
-
+    render() {    
+      
       return (
         <div className='parent'>
           <NavBar />
 
-          <Map google={this.props.google} zoom={11}  initialCenter={{  lat: 37.578494, lng: -122.035478}}>
+          <Map google={this.props.google} zoom={11}  initialCenter={this.state.defaultLocation}>
                   {
                     this.state.stations.map((station) => {
                       return (
