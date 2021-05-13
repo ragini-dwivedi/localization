@@ -5,6 +5,7 @@ import AdminDashboard from './home/AdminDashboard';
 import UserProfile from './profile/profile';
 import LandingPage from './landingPage/LandingPage';
 import Community from './community/Community';
+import Station from './station/Station';
 import Badges from './badge/Badges';
 import AddEvents from './activity/events';
 import AddActivities from './activity/activities';
@@ -57,6 +58,14 @@ const Main = () => {
                     }
                     }} >
                 </Route>
+                <Route path="/station" render={() => {
+                    if (localStorage.getItem('email')) {
+                        return <Station/>;
+                    } else {
+                        return <Redirect to="/" />;
+                    }
+                    }} >
+                </Route>                 
                 <Route path="/addevents" render={() => {
                     if (localStorage.getItem('email')) {
                         return <AddEvents/>;

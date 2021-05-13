@@ -10,6 +10,7 @@ let eventRouter = require('./routes/events');
 let activityRouter = require('./routes/activity');
 let badgesRouter = require('./routes/badges');
 let communitiesRouter = require('./routes/communities');
+let stationsRouter = require('./routes/stations');
 let adminRouter = require('./routes/admin');
 let notificationRouter = require('./routes/notification');
 
@@ -34,6 +35,7 @@ app.use('/events', eventRouter);
 app.use('/activity', activityRouter);
 app.use('/badges', badgesRouter);
 app.use('/communities', communitiesRouter);
+app.use('/stations', stationsRouter);
 app.use('/admin', adminRouter);
 app.use('/notification', notificationRouter);
 
